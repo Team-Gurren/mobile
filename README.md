@@ -17,5 +17,8 @@
 
 ### Para Iniciar
   
-  - npm run dev
- 
+  - npm start
+
+  ### Modo de Desenvolvimento
+   - npm dev
+   - npm cache
