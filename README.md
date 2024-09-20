@@ -7,18 +7,19 @@
 
 ## Instalação
 
- - Clone o repositório para a sua máquina local:
+- Clone o repositório para a sua máquina local:
 
- - git clone https://github.com/Team-Gurren/mobile/tree/dev
+- git clone https://github.com/Team-Gurren/mobile/tree/dev
 
- - cd mobile
+- cd mobile
 
- - npm i
+- npm i
 
-### Para Iniciar
-  
-  - npm start
+## Para Iniciar
 
-  ### Modo de Desenvolvimento
-   - npm dev
-   - npm cache
+- npm start
+
+### Modo de Desenvolvimento
+
+- npm dev
+- npm cache
