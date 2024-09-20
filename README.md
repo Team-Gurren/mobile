@@ -21,5 +21,5 @@
 
 ### Modo de Desenvolvimento
 
-- npm dev
-- npm cache
+- npm run dev
+- npm run cache
