@@ -20,6 +20,6 @@ export const styles = StyleSheet.create({
   title: {
     color: theme.COLORS.WHITE,
     fontSize: theme.FONT_SIZE.SMALL,
-
+    fontFamily: theme.FONT_FAMILY.BOLD
   },
 });

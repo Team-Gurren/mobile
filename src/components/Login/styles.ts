@@ -13,5 +13,6 @@ export const styles = StyleSheet.create({
   text: {
     color: theme.COLORS.WHITE,
     fontSize: theme.FONT_SIZE.SMALL,
+    fontFamily: theme.FONT_FAMILY.SEMIBOLD
   },
 });

@@ -9,8 +9,15 @@ export function SignIn() {
   return (
     <SafeAreaView style={styles.container}>
       <Logo />
-      <Login />
-      <Button title="Esqueceu sua Matrícula?" type="secondary" style={{marginTop: "30%"}}/>
+      <Login
+        loginTitle='Digite sua Matrícula'
+        passwordTitle='Digite sua Data de Nascimento'
+      />
+      <Button
+        title="Esqueceu sua Matrícula?"
+        type="secondary"
+        style={{ marginTop: "30%" }}
+      />
     </SafeAreaView>
   )
 }

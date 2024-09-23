@@ -9,5 +9,8 @@ export const styles = StyleSheet.create({
     height: 40,
     borderRadius: 8,
     textAlign: "center",
+    fontSize: theme.FONT_SIZE.SMALL,
+    fontFamily: theme.FONT_FAMILY.REGULAR,
+    color: '#FFFFFF'
   },
 });
