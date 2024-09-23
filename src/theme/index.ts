@@ -14,7 +14,7 @@ export default {
   },
 
   FONT_SIZE: {
-    SMALL: 48,
+    SMALL: 18,
     MEDIUM: 64,
     LARGE: 96,
   },
