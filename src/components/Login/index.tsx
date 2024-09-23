@@ -2,6 +2,7 @@ import { Text, View } from "react-native";
 
 import { styles } from "./styles";
 import { Input } from "../Input";
+import { Button } from "../Button";
 
 
 export function Login() {
@@ -11,6 +12,7 @@ export function Login() {
       <Input />
       <Text style={styles.text}> Digite sua Data de Nascimento </Text>
       <Input />
+      <Button title="LOGIN"/>
     </View>
   )
 }
