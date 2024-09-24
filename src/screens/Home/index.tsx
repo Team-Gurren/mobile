@@ -4,7 +4,6 @@ import { styles } from "./styles";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { useEffect, useState } from "react";
 
-// Definindo as interfaces para os dados do usuário
 interface User {
   age: number;
   class: string;
@@ -26,19 +25,17 @@ export function Home() {
   const UserLocalRepo = new UserLocalRepository();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const data: ApiResponse | null = await UserLocalRepo.GetUserData();
-      if (data && data.userData) {
-        const { qrCode, userData: user } = data;
-        setUserData(user);
-        setQrCode(qrCode);
-      }
-    };
-
     fetchUserData();
   }, []);
 
-  console.log(userData);
+  const fetchUserData = async () => {
+    const data: ApiResponse | null = await UserLocalRepo.GetUserData();
+    if (data && data.userData) {
+      const { qrCode, userData: user } = data;
+      setUserData(user);
+      setQrCode(qrCode);
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,9 +43,9 @@ export function Home() {
       {qrCode ? (
         <Image
           source={{ uri: qrCode }}
-          style={{ width: 200, height: 200 }} 
+          style={{ width: 200, height: 200 }}
         />
-      ) : null} 
+      ) : null}
     </SafeAreaView>
   );
 }
