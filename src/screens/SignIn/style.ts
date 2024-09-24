@@ -14,16 +14,17 @@ export const styles = StyleSheet.create({
   avoidingView: {
     justifyContent: "center", // Centraliza o conteúdo ao longo do eixo vertical
     alignItems: "center",
-    marginBottom: 40,
+    marginBottom: 20,
   },
   errorMessage: {
     color: COLORS.RED,
     fontFamily: FONT_FAMILY.BOLD,
+    marginTop: 20,
     fontSize: FONT_SIZE.SMALL,
     textAlign: "center",
   },
   missing: {
-    marginTop: Platform.OS === 'ios' ? 39 : 35 ,
+    marginTop: Platform.OS === 'ios' ? 20 : 17 ,
     marginBottom: 50,
   },
   button: {
