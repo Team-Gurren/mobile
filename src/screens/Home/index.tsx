@@ -22,14 +22,14 @@ interface ApiResponse {
 export function Home() {
   const [userData, setUserData] = useState<User | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
-  const UserLocalRepo = new UserLocalRepository();
+  const userLocalRepo = new UserLocalRepository();
 
   useEffect(() => {
     fetchUserData();
   }, []);
 
   const fetchUserData = async () => {
-    const data: ApiResponse | null = await UserLocalRepo.GetUserData();
+    const data: ApiResponse | null = await userLocalRepo.GetUserData();
     if (data && data.userData) {
       const { qrCode, userData: user } = data;
       setUserData(user);

@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
-    marginTop: 5,
+    marginTop: Platform.OS === "ios" ? "5%" : 5,
     justifyContent: "center",
     alignItems: "center",
     width: "90%",
@@ -20,6 +20,6 @@ export const styles = StyleSheet.create({
   title: {
     color: theme.COLORS.WHITE,
     fontSize: theme.FONT_SIZE.SMALL,
-    fontFamily: theme.FONT_FAMILY.BOLD
+    fontFamily: theme.FONT_FAMILY.BOLD,
   },
 });
