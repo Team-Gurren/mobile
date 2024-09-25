@@ -25,9 +25,11 @@ export function SignIn() {
   }
 
   return (
-    <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback
+      style={{ flex: 1 }}
+      onPress={() => Keyboard.dismiss()}
+    >
       <SafeAreaView style={styles.container}>
-        {/* Envolvendo apenas a logo e o login dentro do KeyboardAvoidingView */}
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.avoidingView}
@@ -44,9 +46,6 @@ export function SignIn() {
             <Text style={styles.errorMessage}>Dados incorretos.</Text>
           )}
         </KeyboardAvoidingView>
-
-
-
         <Button
           title="Esqueceu sua Matrícula?"
           type="secondary"

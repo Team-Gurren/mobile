@@ -1,1 +1,1 @@
-console.log("test");
+//Criar um padrão para os erros

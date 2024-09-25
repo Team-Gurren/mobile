@@ -1,14 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-interface User {
-  age: number;
-  class: string;
-  id: number;
-  lastName: string;
-  name: string;
-  password: string;
-  userId: number;
-}
+import { User } from "../../utils/interfaces";
 
 interface ApiResponse {
   qrCode: string;
@@ -40,7 +31,7 @@ export class UserLocalRepository {
     } catch (e) {
       console.error("Error getting user data:", e);
     }
-    return null; // Return null instead of an empty object for clarity
+    return null;
   }
 
   async RemoveUserData() {

@@ -7,7 +7,7 @@ type ButtonProps = {
   type?: "primary" | "secondary";
 } & TouchableOpacityProps
 
-export function Button({ title, type = 'primary', style , ...rest }: ButtonProps) {
+export function Button({ title, type = 'primary', style, ...rest }: ButtonProps) {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -19,7 +19,7 @@ export function Button({ title, type = 'primary', style , ...rest }: ButtonProps
         style
       ]}
       {...rest}
-      >
+    >
       <Text style={styles.title}>
         {title}
       </Text>

@@ -3,22 +3,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { useEffect, useState } from "react";
+import { Button } from "../../components/Button";
+import { User } from "../../utils/interfaces";
 
-interface User {
-  age: number;
-  class: string;
-  id: number;
-  lastName: string;
-  name: string;
-  password: string;
-  userId: number;
-}
 
 interface ApiResponse {
   userData: User;
   qrCode: string;
 }
 
+// Refatorar essa tipagem do null
 export function Home() {
   const [userData, setUserData] = useState<User | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
@@ -37,8 +31,13 @@ export function Home() {
     }
   }
 
+  //Criar o Componente Panel
+  //Criar o Componente UserPanel(Tem que receber Data)
+  //Criar o componente QrCode (Tem que receber uma string que tem o url do qrCode, ao clickar ele dar uma aumentada é dar blur no resto da tela)
+  //Organizar os Componentes e estilizar a página
   return (
     <SafeAreaView style={styles.container}>
+      <Button title="Informações do Usuário" activeOpacity={0} />
       <Text>{userData ? `Bem vindo, ${userData.name}!` : "Loading..."}</Text>
       {qrCode ? (
         <Image

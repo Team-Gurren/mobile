@@ -1,12 +1,14 @@
 import axios from "axios";
 import { UserLocalRepository } from "../storage/User/UserLocalRepository";
 import Config from "../configs/app.config";
-import { useNavigation } from "@react-navigation/native";
 
 type AuthProps = {
   username: String;
   password: String;
 };
+
+// Middleware para autenticação
+// Arrumar o tipo de retorno e tratamento de Erros
 export class AuthMiddleware {
   async Login({ username, password }: AuthProps) {
     const UserLocalRepo = new UserLocalRepository();
@@ -21,7 +23,7 @@ export class AuthMiddleware {
         return response.data;
       })
       .catch((error) => {
-        return false;
+        return null;
       });
 
     const userData = await axios
@@ -35,7 +37,7 @@ export class AuthMiddleware {
       })
       .catch((error) => {
         console.error(error);
-        return false;
+        return null;
       });
     return userData;
   }
