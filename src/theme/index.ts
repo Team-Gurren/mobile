@@ -5,6 +5,7 @@ export default {
     GREEN: "#4E9F3D",
     GREY_DARK: "#40454E",
     GREY_LIGHT: "#93979D",
+    RED: "#FF0F3F"
   },
 
   FONT_FAMILY: {
@@ -14,7 +15,7 @@ export default {
   },
 
   FONT_SIZE: {
-    SMALL: 48,
+    SMALL: 18,
     MEDIUM: 64,
     LARGE: 96,
   },
