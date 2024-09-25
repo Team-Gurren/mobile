@@ -40,7 +40,6 @@ export function SignIn() {
             loginTitle="Digite sua Matrícula"
             passwordTitle="Digite sua Data de Nascimento"
             loginStatus={setLoginStatus}
-
           />
           {loginStatus ? null : (
             <Text style={styles.errorMessage}>Dados incorretos.</Text>
