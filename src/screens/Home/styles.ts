@@ -4,8 +4,9 @@ import theme from "../../theme"
 export const styles = StyleSheet.create({
   container:{
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    paddingTop:40,
+    paddingHorizontal: 20,
     backgroundColor: theme.COLORS.BACKGROUND
   }
 })

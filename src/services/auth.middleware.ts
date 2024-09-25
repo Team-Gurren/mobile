@@ -7,7 +7,6 @@ type AuthProps = {
   password: String;
 };
 
-// Middleware para autenticação
 // Arrumar o tipo de retorno e tratamento de Erros
 export class AuthMiddleware {
   async Login({ username, password }: AuthProps) {
