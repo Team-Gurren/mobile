@@ -37,7 +37,7 @@ export function Home() {
   //Organizar os Componentes e estilizar a página
   return (
     <SafeAreaView style={styles.container}>
-      <Button title="Informações do Usuário" activeOpacity={0} />
+      <Button title="Informações do Usuário" activeOpacity={1} />
       <Text>{userData ? `Bem vindo, ${userData.name}!` : "Loading..."}</Text>
       {qrCode ? (
         <Image
