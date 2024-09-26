@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Alert, Keyboard, Text, TextInputProps, View } from "react-native";
+import { Keyboard, Text, TextInputProps, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { styles } from "./styles";
 import { AuthMiddleware } from "../../services/auth.middleware";
 import { Input } from "../Input";
@@ -22,7 +23,7 @@ export function LoginPanel({ loginTitle, passwordTitle, loginStatus, loadingStat
   const auth = new AuthMiddleware();
   const userLocalRepo = new UserLocalRepository();
 
-  // Fazer correções de erro para network e erros personalizados
+  // Função para lidar com o clique
   async function handleOnPress() {
     loadingStatus(true);
     const userData = await auth.Login({ username, password });
@@ -31,12 +32,13 @@ export function LoginPanel({ loginTitle, passwordTitle, loginStatus, loadingStat
       loginStatus(true);
       navigation.navigate('Home');
     } else {
-      Keyboard.dismiss()
+      Keyboard.dismiss();
       loginStatus(false);
-      loadingStatus(false);
       userLocalRepo.RemoveUserData();
+      setTimeout(() => { loadingStatus(false); }, 1000);
     }
   }
+
   return (
     <Panel style={styles.container}>
       <Text style={styles.text}>{loginTitle}</Text>

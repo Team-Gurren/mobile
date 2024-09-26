@@ -5,6 +5,7 @@ import { QrCode } from "../../components/QrCode";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { User } from "../../utils/interfaces";
 import { styles } from "./styles";
+import { UserPanel } from "../../components/UserPanel";
 
 interface ApiResponse {
   userData: User;
@@ -22,20 +23,24 @@ export function Home() {
     const data: ApiResponse | null = await userLocalRepo.GetUserData();
     if (data && data.userData) {
       setUserData(data.userData);
+      console.log(data)
     }
   };
 
   // Dados para o QR Code (concatenando matrícula, nome e turma)
   const qrCodeData = userData
-    ? { Matricula: userData.userId, Nome: userData.name, Turma: userData.class }
+    ? { userId: userData.userId, name: userData.name, class: userData.class }
     : null;
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Button title="Informações do Usuário" activeOpacity={1} />
-      <Text>{userData ? `Bem-vindo, ${userData.name}!` : "Loading..."}</Text>
-      {userData && qrCodeData ? (
-        <QrCode qrCodeData={qrCodeData} />) : null}
-    </SafeAreaView>
+    userData && qrCodeData ?
+      <SafeAreaView style={styles.container}>
+        <Button title="Informações do Usuário" activeOpacity={1} style={{ marginBottom: 20 }} />
+        <UserPanel userData={userData} />
+        <Text style={styles.title}>Scaneie o QrCode</Text>
+
+        <QrCode qrCodeData={qrCodeData} />
+      </SafeAreaView>
+      : null
   );
 }
