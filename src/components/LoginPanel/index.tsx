@@ -35,7 +35,7 @@ export function LoginPanel({ loginTitle, passwordTitle, loginStatus, loadingStat
       Keyboard.dismiss();
       loginStatus(false);
       userLocalRepo.RemoveUserData();
-      setTimeout(() => { loadingStatus(false); }, 1000);
+      setTimeout(() => { loadingStatus(false) }, 1000)
     }
   }
 

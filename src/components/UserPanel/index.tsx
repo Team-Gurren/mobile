@@ -1,4 +1,4 @@
-import { Platform, Text } from "react-native";
+import { Text } from "react-native";
 import { Panel } from "../Panel";
 import { styles } from "./styles";
 

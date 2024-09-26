@@ -31,7 +31,10 @@ export const styles = StyleSheet.create({
     marginTop: Platform.OS === "ios" ? 60 : 80,
     marginBottom: 40,
   },
-  loading: {
-    backgroundColor: COLORS.BACKGROUND,
+  loadingStyleButton: {
+    marginBottom: 39.8,
   },
+  loading: {
+    paddingTop: Platform.OS === "ios" ? 60 : 39,
+  }
 });
