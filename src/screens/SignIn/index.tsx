@@ -23,7 +23,7 @@ export function SignIn() {
       navigation.navigate("Home");
     }
   }
-
+  console.log(loginStatus);
   return (
     <TouchableWithoutFeedback
       style={{ flex: 1 }}

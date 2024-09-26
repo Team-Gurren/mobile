@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   missing: {
-    marginTop: Platform.OS === 'ios' ? 20 : 17 ,
+    marginTop: Platform.OS === "ios" ? 20 : 16,
     marginBottom: 50,
   },
   button: {

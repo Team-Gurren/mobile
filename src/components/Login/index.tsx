@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Keyboard, KeyboardAvoidingView, Platform, Text, TextInputProps, View } from "react-native";
+import { Alert, Keyboard, Text, TextInputProps, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 import { AuthMiddleware } from "../../services/auth.middleware";
@@ -32,32 +32,31 @@ export function Login({ loginTitle, passwordTitle, loginStatus }: LoginProps) {
       if (userData) {
         loginStatus(true);
         navigation.navigate('Home');
-      } else {
-        Keyboard.dismiss()
-        loginStatus(false);
-        await userLocalRepo.RemoveUserData();
       }
     } catch (e) {
-      Alert.alert('Erro', 'Ocorreu um erro ao tentar fazer login.');
+      Keyboard.dismiss()
+      loginStatus(false);
+      console.log('entrando aq')
+      await userLocalRepo.RemoveUserData();
     }
   }
 
   return (
-    
-      <View style={styles.container}>
-        <Text style={styles.text}>{loginTitle}</Text>
-        <Input
-          inputMode="numeric"
-          onChangeText={setUserName}
-        />
-        <Text style={styles.text}>{passwordTitle}</Text>
-        <Input
-          inputMode="numeric"
-          maxLength={8}
-          onChangeText={setPassword}
-        />
-        <Button title="LOGIN" onPress={handleOnPress} />
-      </View>
-    
+
+    <View style={styles.container}>
+      <Text style={styles.text}>{loginTitle}</Text>
+      <Input
+        inputMode="numeric"
+        onChangeText={setUserName}
+      />
+      <Text style={styles.text}>{passwordTitle}</Text>
+      <Input
+        inputMode="numeric"
+        maxLength={8}
+        onChangeText={setPassword}
+      />
+      <Button title="LOGIN" onPress={handleOnPress} />
+    </View>
+
   );
 }
