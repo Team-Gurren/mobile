@@ -6,44 +6,39 @@ import { AuthMiddleware } from "../../services/auth.middleware";
 import { Input } from "../Input";
 import { Button } from "../Button";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
+import { Panel } from "../Panel";
 
 type LoginProps = {
   loginTitle: string;
   passwordTitle: string;
-  loginStatus: (status: boolean) => void; // Modificação no tipo
+  loginStatus: (status: boolean) => void;
+  loadingStatus: (status: boolean) => void;
 } & TextInputProps;
 
-export function Login({ loginTitle, passwordTitle, loginStatus }: LoginProps) {
+export function LoginPanel({ loginTitle, passwordTitle, loginStatus, loadingStatus }: LoginProps) {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
   const auth = new AuthMiddleware();
   const userLocalRepo = new UserLocalRepository();
 
-  // Definindo loginStatus como null quando o componente monta
-  useEffect(() => {
-    loginStatus(true);
-  }, [loginStatus]);
-
-  // Função de login
+  // Fazer correções de erro para network e erros personalizados
   async function handleOnPress() {
-    try {
-      const userData = await auth.Login({ username, password });
-      if (userData) {
-        loginStatus(true);
-        navigation.navigate('Home');
-      }
-    } catch (e) {
+    loadingStatus(true);
+    const userData = await auth.Login({ username, password });
+    if (userData) {
+      loadingStatus(false);
+      loginStatus(true);
+      navigation.navigate('Home');
+    } else {
       Keyboard.dismiss()
       loginStatus(false);
-      console.log('entrando aq')
-      await userLocalRepo.RemoveUserData();
+      loadingStatus(false);
+      userLocalRepo.RemoveUserData();
     }
   }
-
   return (
-
-    <View style={styles.container}>
+    <Panel style={styles.container}>
       <Text style={styles.text}>{loginTitle}</Text>
       <Input
         inputMode="numeric"
@@ -56,7 +51,6 @@ export function Login({ loginTitle, passwordTitle, loginStatus }: LoginProps) {
         onChangeText={setPassword}
       />
       <Button title="LOGIN" onPress={handleOnPress} />
-    </View>
-
+    </Panel>
   );
 }

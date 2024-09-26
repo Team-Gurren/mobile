@@ -4,7 +4,7 @@ import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
-    justifyContent: "center", 
+    justifyContent: "center",
     zIndex: 1,
   },
   qrCodeWrapper: {

@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center", // Adiciona centralização vertical
     backgroundColor: COLORS.BACKGROUND,
     paddingHorizontal: 20, // Adiciona algum padding para prevenir cortes nas laterais
+    
   },
   avoidingView: {
     justifyContent: "center", // Centraliza o conteúdo ao longo do eixo vertical
@@ -24,7 +25,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   missing: {
-    marginTop: Platform.OS === "ios" ? 20 : 16,
+    marginTop: Platform.OS === 'ios' ? 20 : 17 ,
     marginBottom: 50,
   },
   button: {

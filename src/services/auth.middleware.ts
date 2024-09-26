@@ -12,7 +12,6 @@ export class AuthMiddleware {
   async Login({ username, password }: AuthProps) {
     const UserLocalRepo = new UserLocalRepository();
     const { apiUrl } = Config;
-
     const loginData = await axios
       .post(apiUrl + "/user/login", {
         userId: Number(username),
@@ -22,7 +21,8 @@ export class AuthMiddleware {
         return response.data;
       })
       .catch((error) => {
-        return null;
+        console.error(error);
+        return false;
       });
 
     const userData = await axios
@@ -36,7 +36,7 @@ export class AuthMiddleware {
       })
       .catch((error) => {
         console.error(error);
-        return null;
+        return false;
       });
     return userData;
   }

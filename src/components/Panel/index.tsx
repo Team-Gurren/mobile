@@ -1,9 +1,10 @@
-import { View } from "react-native";
 
-export function Panel() {
+import { View, ViewProps } from "react-native";
+import { styles } from "./styles";
+
+export function Panel({ style, ...rest }: ViewProps) {
   return (
-    <View>
-      
-    </View>
+    <View {...rest} style={[style, styles.container]}>
+    </View >
   )
 }

@@ -2,14 +2,16 @@ import { Keyboard, KeyboardAvoidingView, Platform, Text, TouchableWithoutFeedbac
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./style";
 import { Logo } from "../../components/Logo";
-import { Login } from "../../components/Login";
+import { LoginPanel } from "../../components/LoginPanel";
 import { Button } from "../../components/Button";
 import { useEffect, useState } from "react";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { useNavigation } from "@react-navigation/native";
+import { Loading } from "../../components/Loading";
 
 export function SignIn() {
-  const [loginStatus, setLoginStatus] = useState(true);
+  const [loginStatus, setLoginStatus] = useState<Boolean>();
+  const [loadingStatus, setLoadingStatus] = useState(false);
 
   const userLocalRepo = new UserLocalRepository();
   const navigation = useNavigation();
@@ -23,33 +25,38 @@ export function SignIn() {
       navigation.navigate("Home");
     }
   }
-  console.log(loginStatus);
+  console.log('loginStatus', loginStatus)
   return (
     <TouchableWithoutFeedback
       style={{ flex: 1 }}
       onPress={() => Keyboard.dismiss()}
     >
       <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.avoidingView}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 0}
-        >
-          <Logo />
-          <Login
-            loginTitle="Digite sua Matrícula"
-            passwordTitle="Digite sua Data de Nascimento"
-            loginStatus={setLoginStatus}
-          />
-          {loginStatus ? null : (
-            <Text style={styles.errorMessage}>Dados incorretos.</Text>
-          )}
-        </KeyboardAvoidingView>
-        <Button
-          title="Esqueceu sua Matrícula?"
-          type="secondary"
-          style={loginStatus ? styles.button : styles.missing}
-        />
+        {loadingStatus ? (<Loading />) : (
+          <>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+              style={styles.avoidingView}
+              keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 0}
+            >
+              <Logo />
+              <LoginPanel
+                loginTitle="Digite sua Matrícula"
+                passwordTitle="Digite sua Data de Nascimento"
+                loginStatus={setLoginStatus}
+                loadingStatus={setLoadingStatus}
+              />
+              {loginStatus ? null : (
+                <Text style={styles.errorMessage}>Dados incorretos.</Text>
+              )}
+            </KeyboardAvoidingView>
+            <Button
+              title="Esqueceu sua Matrícula?"
+              type="secondary"
+              style={loginStatus ? styles.button : styles.missing}
+            />
+          </>
+        )}
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

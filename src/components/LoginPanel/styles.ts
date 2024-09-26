@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
     alignItems: "center",
-    backgroundColor: theme.COLORS.GREY_DARK,
     width: Platform.OS === 'ios'? 350 : 300,
     height: Platform.OS === 'ios'? 300: 270,
     borderRadius: 20,
