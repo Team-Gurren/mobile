@@ -6,23 +6,24 @@ import { LoginPanel } from "../../components/LoginPanel";
 import { Button } from "../../components/Button";
 import { useEffect, useState } from "react";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { Loading } from "../../components/Loading";
+import { SignInScreenNavigationProp } from "../../utils/types";
 
 export function SignIn() {
   const [loginStatus, setLoginStatus] = useState<Boolean>(true);
-  const [loadingStatus, setLoadingStatus] = useState(true);
+  const [loadingStatus, setLoadingStatus] = useState(false);
 
   const userLocalRepo = new UserLocalRepository();
-  const navigation = useNavigation();
+  const navigation = useNavigation<SignInScreenNavigationProp>();
 
   useEffect(() => {
     checkUserDataExists();
-  }, []);
+  }, [useIsFocused()]);
 
   async function checkUserDataExists() {
     if (await userLocalRepo.GetUserData()) {
-      navigation.navigate("Home");
+      navigation.replace("Home");
     }
   }
   return (
@@ -49,11 +50,10 @@ export function SignIn() {
         <Button
           title="Esqueceu sua Matrícula?"
           type="secondary"
-          style={loadingStatus? styles.loadingStyleButton : loginStatus ? styles.button : styles.missing }
+          style={loadingStatus ? styles.loadingStyleButton : loginStatus ? styles.button : styles.missing}
         />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   )
 }
-// ARRUMAR O BACK TO LOGIN
 // ARRUMAR A DATA DE NASCIMENTO

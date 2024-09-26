@@ -6,13 +6,14 @@ import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { User } from "../../utils/interfaces";
 import { styles } from "./styles";
 import { UserPanel } from "../../components/UserPanel";
+import { useNavigation } from "@react-navigation/native";
 
 interface ApiResponse {
   userData: User;
 }
 
 export function Home() {
-  const [userData, setUserData] = useState<User | null>(null);
+  const [userData, setUserData] = useState<User>();
   const userLocalRepo = new UserLocalRepository();
 
   useEffect(() => {
