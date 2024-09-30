@@ -3,10 +3,10 @@ import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
-    width: Platform.OS === "ios" ? 350 : 300,
-    height: Platform.OS === "ios" ? 300 : 270,
+    width: Platform.OS === "ios" ? 350 : "90%",
+    height: Platform.OS === "ios" ? 300 : "35%",
     borderRadius: 20,
-    marginBottom: 40,
+    marginBottom: "10%",
   },
   title: {
     textAlign: "center",

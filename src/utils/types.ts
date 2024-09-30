@@ -4,5 +4,7 @@ type RouteParams = {
   Home: undefined;
   SignIn: undefined;
 };
-export type SignInScreenNavigationProp = NativeStackNavigationProp<RouteParams, 'SignIn'>;
-
+export type SignInScreenNavigationProp = NativeStackNavigationProp<
+  RouteParams,
+  "SignIn"
+>;

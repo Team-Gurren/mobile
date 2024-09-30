@@ -6,7 +6,6 @@ import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { User } from "../../utils/interfaces";
 import { styles } from "./styles";
 import { UserPanel } from "../../components/UserPanel";
-import { useNavigation } from "@react-navigation/native";
 
 interface ApiResponse {
   userData: User;
@@ -24,7 +23,6 @@ export function Home() {
     const data: ApiResponse | null = await userLocalRepo.GetUserData();
     if (data && data.userData) {
       setUserData(data.userData);
-      console.log(data)
     }
   };
 
@@ -34,14 +32,19 @@ export function Home() {
     : null;
 
   return (
-    userData && qrCodeData ?
+    userData && qrCodeData ? (
       <SafeAreaView style={styles.container}>
-        <Button title="Informações do Usuário" activeOpacity={1} style={{ marginBottom: 20 }} />
+        <Button
+          title="Informações do Usuário"
+          activeOpacity={1}
+          style={{ marginBottom: 20 }}
+          onPress={() => userLocalRepo.RemoveUserData()}
+        />
         <UserPanel userData={userData} />
         <Text style={styles.title}>Scaneie o QrCode</Text>
 
         <QrCode qrCodeData={qrCodeData} />
       </SafeAreaView>
-      : null
+    ) : null
   );
 }

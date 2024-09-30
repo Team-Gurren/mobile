@@ -16,13 +16,15 @@ export function QrCode({ qrCodeData, ...rest }: QrCodeProps) {
   const [pressed, setPressed] = useState(false);
   const scale = useSharedValue(1); // Valor compartilhado para a escala
 
+  const { name } = qrCodeData
+  
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
 
   const handlePress = () => {
     setPressed((prev) => !prev);
-    scale.value = withTiming(pressed ? 1 : Platform.OS === 'ios' ? 2 : 1.7, { duration: 350 }); // Aumenta ou reduz a escala
+    scale.value = withTiming(pressed ? 1 : Platform.OS === 'ios' ? 2 : 1.8, { duration: 350 }); // Aumenta ou reduz a escala
   };
 
   return (
@@ -38,7 +40,7 @@ export function QrCode({ qrCodeData, ...rest }: QrCodeProps) {
       >
         <Animated.View style={[animatedStyle, styles.qrCodeWrapper]}>
           <QRCode
-            value={JSON.stringify(qrCodeData)}
+            value={JSON.stringify(name)}
             size={150}
           />
         </Animated.View>

@@ -30,8 +30,8 @@ export class UserLocalRepository {
       }
     } catch (e) {
       console.error("Error getting user data:", e);
+      return null;
     }
-    return null;
   }
 
   async RemoveUserData() {

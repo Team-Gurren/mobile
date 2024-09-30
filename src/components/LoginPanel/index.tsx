@@ -23,7 +23,6 @@ export function LoginPanel({ loginTitle, passwordTitle, loginStatus, loadingStat
   const auth = new AuthMiddleware();
   const userLocalRepo = new UserLocalRepository();
 
-  // Função para lidar com o clique
   async function handleOnPress() {
     loadingStatus(true);
     const userData = await auth.Login({ username, password });

@@ -56,4 +56,3 @@ export function SignIn() {
     </TouchableWithoutFeedback>
   )
 }
-// ARRUMAR A DATA DE NASCIMENTO
