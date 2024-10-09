@@ -1,18 +1,27 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  leftArrow: {
+    justifyContent: "center",
+    paddingHorizontal: Platform.OS === "ios" ? 20 : 20,
+    marginTop: Platform.OS === "ios" ? 10 : 55,
+    marginBottom: Platform.OS === "ios" ? null : 20,
+    width: 70,
+  },
+  body: {
+    flex: 1,
+    marginTop: Platform.OS === "ios" ? 30 : 0,
+    paddingHorizontal: Platform.OS === "ios" ? 20 : 10,
     alignItems: "center",
-    paddingTop: 60,
-    paddingHorizontal: 20,
-    backgroundColor: theme.COLORS.BACKGROUND,
   },
   title: {
-    color: theme.COLORS.WHITE,
-    fontSize: theme.FONT_SIZE.MEDIUM,
+    color: theme.COLORS.BROWN_LIGHT,
+    fontSize: theme.FONT_SIZE.LARGE,
     fontFamily: theme.FONT_FAMILY.BOLD,
-    paddingBottom: 20,
+    paddingTop: 20,
   },
 });

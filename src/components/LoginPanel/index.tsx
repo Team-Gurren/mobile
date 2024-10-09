@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Keyboard, Text, TextInputProps, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { styles } from "./styles";
 import { AuthMiddleware } from "../../services/auth.middleware";
 import { Input } from "../Input";
 import { Button } from "../Button";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { Panel } from "../Panel";
+import { SignInScreenNavigationProp } from "../../utils/types";
 
 type LoginProps = {
   loginTitle: string;
@@ -19,9 +19,8 @@ type LoginProps = {
 export function LoginPanel({ loginTitle, passwordTitle, loginStatus, loadingStatus }: LoginProps) {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const navigation = useNavigation();
+  const navigation = useNavigation<SignInScreenNavigationProp>();
   const auth = new AuthMiddleware();
-  const userLocalRepo = new UserLocalRepository();
 
   async function handleOnPress() {
     loadingStatus(true);
@@ -29,11 +28,10 @@ export function LoginPanel({ loginTitle, passwordTitle, loginStatus, loadingStat
     if (userData) {
       loadingStatus(false);
       loginStatus(true);
-      navigation.navigate('Home');
+      navigation.replace("Home");
     } else {
       Keyboard.dismiss();
       loginStatus(false);
-      userLocalRepo.RemoveUserData();
       setTimeout(() => { loadingStatus(false) }, 1000)
     }
   }

@@ -6,5 +6,6 @@ type RouteParams = {
 };
 export type SignInScreenNavigationProp = NativeStackNavigationProp<
   RouteParams,
-  "SignIn"
+  "SignIn",
+  "Home"
 >;

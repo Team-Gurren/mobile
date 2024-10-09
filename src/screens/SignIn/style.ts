@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: COLORS.BACKGROUND,
+
     paddingHorizontal: 20,
   },
   avoidingView: {
@@ -35,6 +35,6 @@ export const styles = StyleSheet.create({
     marginBottom: 39.8,
   },
   loading: {
-    paddingTop: Platform.OS === "ios" ? 60 : 39,
+    paddingTop: Platform.OS === "ios" ? 60 : 40,
   }
 });

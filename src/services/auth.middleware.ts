@@ -18,6 +18,7 @@ export class AuthMiddleware {
         password,
       })
       .then((response) => {
+        console.log(response.data);
         return response.data;
       })
       .catch((error) => {
@@ -30,8 +31,8 @@ export class AuthMiddleware {
         headers: { Authorization: `Bearer ${loginData.token}` },
       })
       .then(async (response) => {
-        const { user, qrCode } = response.data;
-        await UserLocalRepo.SetUserData(user, qrCode);
+        const { user } = response.data;
+        await UserLocalRepo.SetUserData(user);
         return response.data;
       })
       .catch((error) => {

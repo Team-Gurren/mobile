@@ -9,6 +9,7 @@ import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { Loading } from "../../components/Loading";
 import { SignInScreenNavigationProp } from "../../utils/types";
+import { BackGround } from "../../components/BackGround";
 
 export function SignIn() {
   const [loginStatus, setLoginStatus] = useState<Boolean>(true);
@@ -19,7 +20,7 @@ export function SignIn() {
 
   useEffect(() => {
     checkUserDataExists();
-  }, [useIsFocused()]);
+  }, []);
 
   async function checkUserDataExists() {
     if (await userLocalRepo.GetUserData()) {
@@ -27,32 +28,34 @@ export function SignIn() {
     }
   }
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <SafeAreaView style={styles.container}>
+    <BackGround>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <SafeAreaView style={styles.container}>
 
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.avoidingView}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 0}
-        >
-          <Logo />
-          <LoginPanel
-            loginTitle="Digite sua Matrícula"
-            passwordTitle="Digite sua Data de Nascimento"
-            loginStatus={setLoginStatus}
-            loadingStatus={setLoadingStatus}
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.avoidingView}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 0}
+          >
+            <Logo />
+            <LoginPanel
+              loginTitle="Digite sua Matrícula"
+              passwordTitle="Digite sua Data de Nascimento"
+              loginStatus={setLoginStatus}
+              loadingStatus={setLoadingStatus}
+            />
+            {loadingStatus ? <Loading style={styles.loading} /> : loginStatus ? null : (
+              <Text style={styles.errorMessage}>Dados incorretos.</Text>
+            )}
+          </KeyboardAvoidingView>
+
+          <Button
+            title="Esqueceu sua Matrícula?"
+            type="SECONDARY"
+            style={loadingStatus ? styles.loadingStyleButton : loginStatus ? styles.button : styles.missing}
           />
-          {loadingStatus ? <Loading style={styles.loading} /> : loginStatus ? null : (
-            <Text style={styles.errorMessage}>Dados incorretos.</Text>
-          )}
-        </KeyboardAvoidingView>
-
-        <Button
-          title="Esqueceu sua Matrícula?"
-          type="secondary"
-          style={loadingStatus ? styles.loadingStyleButton : loginStatus ? styles.button : styles.missing}
-        />
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
+    </BackGround>
   )
 }

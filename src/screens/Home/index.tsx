@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { Button } from "../../components/Button";
 import { QrCode } from "../../components/QrCode";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
 import { User } from "../../utils/interfaces";
 import { styles } from "./styles";
 import { UserPanel } from "../../components/UserPanel";
+import { ArrowLeft } from "phosphor-react-native"
+import { useNavigation } from "@react-navigation/native";
+import { SignInScreenNavigationProp } from "../../utils/types";
+import { BackGround } from "../../components/BackGround";
 
 interface ApiResponse {
   userData: User;
@@ -15,9 +19,17 @@ export function Home() {
   const [userData, setUserData] = useState<User>();
   const userLocalRepo = new UserLocalRepository();
 
+  const navigation = useNavigation<SignInScreenNavigationProp>();
+  let qrCodeData = userData ? { userId: userData.userId } : null;
+
   useEffect(() => {
     fetchUserData();
   }, []);
+
+  const handleOnPress = async () => {
+    await userLocalRepo.RemoveUserData();
+    navigation.replace("SignIn")
+  }
 
   const fetchUserData = async () => {
     const data: ApiResponse | null = await userLocalRepo.GetUserData();
@@ -26,25 +38,29 @@ export function Home() {
     }
   };
 
-  // Dados para o QR Code (concatenando matrícula, nome e turma)
-  const qrCodeData = userData
-    ? { userId: userData.userId, name: userData.name, class: userData.class }
-    : null;
-
   return (
     userData && qrCodeData ? (
-      <SafeAreaView style={styles.container}>
-        <Button
-          title="Informações do Usuário"
-          activeOpacity={1}
-          style={{ marginBottom: 20 }}
-          onPress={() => userLocalRepo.RemoveUserData()}
-        />
-        <UserPanel userData={userData} />
-        <Text style={styles.title}>Scaneie o QrCode</Text>
+      <BackGround type="SECONDARY">
+        <SafeAreaView style={styles.container}>
+          <TouchableOpacity
+            style={styles.leftArrow}
+            onPress={handleOnPress}
+          >
+            <ArrowLeft weight="bold" color="white" size={30} />
+          </TouchableOpacity>
+          <View style={styles.body}>
+            <Button
+              title="Informações do Usuário"
+              activeOpacity={1}
+              style={{ marginBottom: 40 }}
+            />
+            <UserPanel userData={userData} />
 
-        <QrCode qrCodeData={qrCodeData} />
-      </SafeAreaView>
+            <QrCode qrCodeData={qrCodeData} />
+            <Text style={styles.title}>Scaneie o QrCode</Text>
+          </View>
+        </SafeAreaView>
+      </BackGround>
     ) : null
   );
 }

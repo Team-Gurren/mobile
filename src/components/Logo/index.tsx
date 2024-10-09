@@ -1,12 +1,7 @@
-import { Image, View } from "react-native";
-import { styles } from "./styles";
-
-import img from "../../assets/logo.png";
+import Svg from "../../assets/logo.svg";
 
 export function Logo() {
   return (
-    <View>
-      <Image source={img} style={{ width: 270, height: 270 }} />
-    </View>
+    <Svg height={220} width={220} style={{ marginLeft: 50, marginVertical: 30 }} />
   )
 }

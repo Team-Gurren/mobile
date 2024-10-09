@@ -3,6 +3,6 @@ import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.COLORS.GREY_DARK,
+    backgroundColor: theme.COLORS.BROWN_LIGHT,
   },
 });

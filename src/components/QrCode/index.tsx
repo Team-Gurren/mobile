@@ -9,15 +9,15 @@ import { User } from "../../utils/interfaces";
 
 
 interface QrCodeProps extends TouchableOpacityProps {
-  qrCodeData: Partial<User>;
+  qrCodeData: Pick<User, 'userId'>;
 }
 
 export function QrCode({ qrCodeData, ...rest }: QrCodeProps) {
   const [pressed, setPressed] = useState(false);
   const scale = useSharedValue(1); // Valor compartilhado para a escala
 
-  const { name } = qrCodeData
-  
+  const { userId } = qrCodeData
+
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
@@ -30,7 +30,7 @@ export function QrCode({ qrCodeData, ...rest }: QrCodeProps) {
   return (
     <>
       {pressed && (
-        <BlurView intensity={1} style={styles.blurContainer} />
+        <BlurView intensity={0.4} style={styles.blurContainer} />
       )}
       <TouchableOpacity
         onPress={handlePress}
@@ -40,7 +40,7 @@ export function QrCode({ qrCodeData, ...rest }: QrCodeProps) {
       >
         <Animated.View style={[animatedStyle, styles.qrCodeWrapper]}>
           <QRCode
-            value={JSON.stringify(name)}
+            value={JSON.stringify(userId)}
             size={150}
           />
         </Animated.View>

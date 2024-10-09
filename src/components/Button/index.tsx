@@ -5,10 +5,10 @@ import { styles } from "./styles";
 
 type ButtonProps = {
   title: string;
-  type?: "primary" | "secondary";
+  type?: "PRIMARY" | "SECONDARY";
 } & TouchableOpacityProps;
 
-export function Button({ title, type = 'primary', style, ...rest }: ButtonProps) {
+export function Button({ title, type = 'PRIMARY', style, ...rest }: ButtonProps) {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -16,7 +16,7 @@ export function Button({ title, type = 'primary', style, ...rest }: ButtonProps)
       delayPressOut={20}
       style={[
         styles.container,
-        type === 'primary' ? styles.primary : styles.secondary, style
+        type === 'PRIMARY' ? styles.primary : styles.secondary, style
       ]}
       {...rest}
     >

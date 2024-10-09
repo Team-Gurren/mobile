@@ -2,11 +2,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { AppRoutes } from "./app.routes";
 import { View } from "react-native";
 import Theme from "../theme";
-import { UserLocalRepository } from "../storage/User/UserLocalRepository";
-import { useState } from "react";
 
 export function Routes() {
-
   const { COLORS } = Theme
 
   return (
