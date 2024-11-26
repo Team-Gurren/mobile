@@ -1,12 +1,11 @@
 import React from "react";
 import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
-import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { styles } from "./styles";
 
 type ButtonProps = {
   title: string;
   type?: "PRIMARY" | "SECONDARY";
-} & TouchableOpacityProps;
+} & TouchableOpacityProps
 
 export function Button({ title, type = 'PRIMARY', style, ...rest }: ButtonProps) {
   return (

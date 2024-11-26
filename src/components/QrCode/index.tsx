@@ -6,6 +6,7 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-na
 import { BlurView } from "expo-blur"; // Importa o BlurView
 import { styles } from "./styles";
 import { User } from "../../utils/interfaces";
+import { BackGround } from "../BackGround";
 
 
 interface QrCodeProps extends TouchableOpacityProps {

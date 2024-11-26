@@ -1,23 +1,18 @@
 import { Text } from "react-native";
 import { Panel } from "../Panel";
 import { styles } from "./styles";
+import { User } from "../../utils/interfaces";
 
 interface UserPanelProps {
-  userData: {
-    name: string;
-    userId: number;
-    class: string;
-    age: number;
-  }
+  userData: User
 }
 
 export function UserPanel({ userData }: UserPanelProps) {
   return (
     <Panel style={styles.container}>
-      <Text style={styles.title}>{userData.name}</Text>
-      <Text style={styles.text}>Matrícula: {userData.userId}</Text>
-      <Text style={styles.text}>Turma: {userData.class} </Text>
-      <Text style={styles.text}>Idade: {userData.age} </Text>
+      <Text style={styles.title}>{userData.nome}</Text>
+      <Text style={styles.text}>Matrícula: {userData.matricula}</Text>
+      <Text style={styles.text}>Turma: {userData.turma} </Text>
     </Panel>
   )
 }

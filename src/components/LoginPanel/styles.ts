@@ -3,10 +3,10 @@ import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
     alignItems: "center",
+    justifyContent: "center",
     width: Platform.OS === "ios" ? 350 : 300,
-    height: Platform.OS === "ios" ? 300 : 270,
+    paddingVertical: 20,
     borderRadius: 20,
   },
   text: {

@@ -1,44 +1,32 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import Config from "../configs/app.config"; // Ajuste o caminho conforme necessário
 import { UserLocalRepository } from "../storage/User/UserLocalRepository";
-import Config from "../configs/app.config";
 
-type AuthProps = {
-  username: String;
-  password: String;
-};
-
-// Arrumar o tipo de retorno e tratamento de Erros
+const userStorage = new UserLocalRepository();
 export class AuthMiddleware {
-  async Login({ username, password }: AuthProps) {
-    const UserLocalRepo = new UserLocalRepository();
+  async GetAlunoByMatricula(matricula: string) {
     const { apiUrl } = Config;
-    const loginData = await axios
-      .post(apiUrl + "/user/login", {
-        userId: Number(username),
-        password,
-      })
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-        return false;
-      });
 
-    const userData = await axios
-      .get(apiUrl + "/user/auth/me", {
-        headers: { Authorization: `Bearer ${loginData.token}` },
-      })
-      .then(async (response) => {
-        const { user } = response.data;
-        await UserLocalRepo.SetUserData(user);
-        return response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-        return false;
-      });
-    return userData;
+    try {
+      const response = await axios.get(
+        apiUrl + `/aluno/matricula/${matricula}`
+      );
+      userStorage.SetUserData(response.data);
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response && error.response.status === 404) {
+          return { error: "Matrícula incorreta" };
+        }
+        console.error(
+          "Erro ao buscar dados do aluno:",
+          error.response?.data || error.message
+        );
+        return { error: "Erro ao buscar dados do aluno" };
+      }
+
+      console.error("Erro desconhecido:", error);
+      return { error: "Erro desconhecido" };
+    }
   }
 }

@@ -6,16 +6,16 @@ export const styles = StyleSheet.create({
     marginTop: Platform.OS === "ios" ? "5%" : 5,
     justifyContent: "center",
     alignItems: "center",
-    width: "90%",
-    height: 60,
+    height: 50,
     borderRadius: 20,
+    paddingHorizontal: 20,
   },
   primary: {
     backgroundColor: theme.COLORS.BROWN,
-    // estilo para o tipo "primary"
+    marginTop: 20,
   },
   secondary: {
-    backgroundColor: theme.COLORS.BROWN_DARK, // estilo para o tipo "secondary"
+    backgroundColor: theme.COLORS.BROWN_DARK,
   },
   title: {
     color: theme.COLORS.WHITE,

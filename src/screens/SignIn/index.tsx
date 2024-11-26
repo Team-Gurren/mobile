@@ -6,7 +6,7 @@ import { LoginPanel } from "../../components/LoginPanel";
 import { Button } from "../../components/Button";
 import { useEffect, useState } from "react";
 import { UserLocalRepository } from "../../storage/User/UserLocalRepository";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Loading } from "../../components/Loading";
 import { SignInScreenNavigationProp } from "../../utils/types";
 import { BackGround } from "../../components/BackGround";
@@ -31,7 +31,6 @@ export function SignIn() {
     <BackGround>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <SafeAreaView style={styles.container}>
-
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={styles.avoidingView}
@@ -40,7 +39,6 @@ export function SignIn() {
             <Logo />
             <LoginPanel
               loginTitle="Digite sua Matrícula"
-              passwordTitle="Digite sua Data de Nascimento"
               loginStatus={setLoginStatus}
               loadingStatus={setLoadingStatus}
             />
@@ -53,6 +51,7 @@ export function SignIn() {
             title="Esqueceu sua Matrícula?"
             type="SECONDARY"
             style={loadingStatus ? styles.loadingStyleButton : loginStatus ? styles.button : styles.missing}
+            onPress={() => { navigation.navigate('ForgetMyLogin') }}
           />
         </SafeAreaView>
       </TouchableWithoutFeedback>

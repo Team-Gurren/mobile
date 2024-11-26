@@ -9,7 +9,6 @@ import { UserPanel } from "../../components/UserPanel";
 import { ArrowLeft } from "phosphor-react-native"
 import { useNavigation } from "@react-navigation/native";
 import { SignInScreenNavigationProp } from "../../utils/types";
-import { BackGround } from "../../components/BackGround";
 
 interface ApiResponse {
   userData: User;
@@ -20,7 +19,7 @@ export function Home() {
   const userLocalRepo = new UserLocalRepository();
 
   const navigation = useNavigation<SignInScreenNavigationProp>();
-  let qrCodeData = userData ? { userId: userData.userId } : null;
+  let qrCodeData = userData ? { userId: userData.matricula } : null;
 
   useEffect(() => {
     fetchUserData();
@@ -40,27 +39,26 @@ export function Home() {
 
   return (
     userData && qrCodeData ? (
-      <BackGround type="SECONDARY">
-        <SafeAreaView style={styles.container}>
-          <TouchableOpacity
-            style={styles.leftArrow}
-            onPress={handleOnPress}
-          >
-            <ArrowLeft weight="bold" color="white" size={30} />
-          </TouchableOpacity>
-          <View style={styles.body}>
-            <Button
-              title="Informações do Usuário"
-              activeOpacity={1}
-              style={{ marginBottom: 40 }}
-            />
-            <UserPanel userData={userData} />
 
-            <QrCode qrCodeData={qrCodeData} />
-            <Text style={styles.title}>Scaneie o QrCode</Text>
-          </View>
-        </SafeAreaView>
-      </BackGround>
+      <SafeAreaView style={styles.container}>
+        <TouchableOpacity
+          style={styles.leftArrow}
+          onPress={handleOnPress}
+        >
+          <ArrowLeft weight="bold" color="white" size={30} />
+        </TouchableOpacity>
+        <View style={styles.body}>
+          <Button
+            title="Informações do Usuário"
+            activeOpacity={1}
+            style={{ marginBottom: 40 }}
+          />
+          <UserPanel userData={userData} />
+
+          <QrCode qrCodeData={qrCodeData} />
+          <Text style={styles.title}>Scaneie o QrCode</Text>
+        </View>
+      </SafeAreaView>
     ) : null
   );
 }
